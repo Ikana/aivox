@@ -2,7 +2,7 @@
   "name": "glos",
   "version": "0.0.1",
   "description": "A lightweight CLI tool for translating voice to text using Whisper, seamlessly piping the transcribed text to any Unix-like command for versatile integration.",
-  "main": "main.ts",
+  "main": "dist/main.js",
   "scripts": {
     "test": "jest",
     "build": "tsup ./src/main.ts"
