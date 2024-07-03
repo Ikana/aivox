@@ -1,11 +1,15 @@
 {
-  "name": "glos",
-  "version": "0.0.1",
+  "name": "aivox",
+  "version": "0.0.3",
+  "bin": {
+    "aivox": "dist/main.js"
+  },
   "description": "A lightweight CLI tool for translating voice to text using Whisper, seamlessly piping the transcribed text to any Unix-like command for versatile integration.",
   "main": "dist/main.js",
   "scripts": {
     "test": "jest",
-    "build": "tsup ./src/main.ts"
+    "build": "tsup src/main.ts --out-dir dist",
+    "postbuild": "chmod +x dist/main.js"
   },
   "repository": {
     "type": "git",

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // @ts-ignore
 import { decode } from "node-wav";
 // @ts-ignore
