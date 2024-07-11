@@ -16,7 +16,7 @@ import { exit } from "node:process";
 const homeDir = homedir();
 
 // Define the directory you want inside the user's home directory
-const directoryName = ".glos/models";
+const directoryName = ".aivox/models";
 
 // Construct the full path to the directory
 const fullPath = join(homeDir, directoryName);

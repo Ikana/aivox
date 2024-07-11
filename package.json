@@ -1,6 +1,6 @@
 {
   "name": "aivox",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "bin": {
     "aivox": "dist/main.js"
   },
@@ -13,15 +13,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ikana/glos.git"
+    "url": "git+https://github.com/Ikana/aivox.git"
   },
-  "keywords": ["voice", "whisper", "voice-to-text", "cli"],
+  "keywords": [
+    "voice",
+    "whisper",
+    "voice-to-text",
+    "cli"
+  ],
   "author": "Rod Quezada",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Ikana/glos/issues"
+    "url": "https://github.com/Ikana/aivox/issues"
   },
-  "homepage": "https://github.com/Ikana/glos#readme",
+  "homepage": "https://github.com/Ikana/aivox#readme",
   "dependencies": {
     "node-fetch": "^2.7.0",
     "node-record-lpcm16": "^1.0.1",
