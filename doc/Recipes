@@ -1,0 +1,4 @@
+Commit with your voice
+``` bash
+aivox > /tmp/gitmsg.txt && emacs /tmp/gitmsg.txt && git commit -F /tmp/gitmsg.txt && rm /tmp/gitmsg.txt
+```
