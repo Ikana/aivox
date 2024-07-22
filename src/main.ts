@@ -1,3 +1,4 @@
+#!/usr/bin/env nodek
 import { spawn } from 'child_process';
 import * as path from 'path';
 
