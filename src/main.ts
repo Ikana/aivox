@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { spawn } from 'child_process';
+import { spawn, fork } from 'child_process';
 import * as path from 'path';
 
 async function runTranscription(): Promise<string> {
@@ -28,11 +28,25 @@ async function runTranscription(): Promise<string> {
     });
 }
 
+function showRecordingMessage() {
+    const messageProcess = fork(path.resolve(__dirname, 'recording.js'), {
+        stdio: ['ignore', 'ignore', 'inherit', 'ipc'] // Use IPC channel and inherit stderr
+    });
+    return messageProcess;
+}
+
 (async () => {
+    const recordingProcess = showRecordingMessage();
     try {
         const result = await runTranscription();
-        console.log(result.trim());
+        recordingProcess.send('exit'); // Signal the recording message to exit
+        recordingProcess.on('exit', () => {
+            console.log(result.trim());
+        });
     } catch (error) {
-        console.error('Error:', error);
+        recordingProcess.send('exit'); // Ensure the message process is stopped on error
+        recordingProcess.on('exit', () => {
+            console.error('Error:', error);
+        });
     }
 })();

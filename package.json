@@ -1,6 +1,6 @@
 {
   "name": "aivox",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "bin": {
     "aivox": "dist/main.js"
   },
@@ -8,7 +8,7 @@
   "main": "dist/main.js",
   "scripts": {
     "test": "jest",
-    "build": "tsup src/main.ts --out-dir dist && tsup src/worker.ts --out-dir dist",
+    "build": "tsup src/main.ts --out-dir dist && tsup src/worker.ts --out-dir dist && tsup src/recording.ts --out-dir dist",
     "postbuild": "chmod +x dist/main.js"
   },
   "repository": {
