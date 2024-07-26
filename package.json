@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/Ikana/aivox#readme",
   "dependencies": {
-    "node-fetch": "^2.7.0",
+    "node-fetch": "^3.3.2",
     "node-record-lpcm16": "^1.0.1",
     "node-wav": "^0.0.2",
     "smart-whisper": "^0.7.0",
