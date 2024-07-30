@@ -1,6 +1,5 @@
 import { createWriteStream, existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
-import fetch from "node-fetch";
 
 const src = "https://huggingface.co/ggerganov/whisper.cpp";
 const pfx = "resolve/main/ggml";
@@ -15,16 +14,7 @@ const downloadModel = async (modelsPath: string = "./models") => {
   }
 
   if (existsSync(modelFilePath)) {
-    // console.info(
-    //   `Model ${model} already exists at ${modelFilePath}. Skipping download.`,
-    // );
-    return;
-  }
-
-  if (existsSync(modelFilePath)) {
-    // console.info(
-    //   `Model ${model} already exists at ${modelFilePath}. Skipping download.`,
-    // );
+    // Model already exists, skipping download
     return;
   }
 
@@ -36,23 +26,14 @@ const downloadModel = async (modelsPath: string = "./models") => {
       throw new Error(`Failed to download ggml model ${model}`);
     }
 
-    const promise = new Promise<void>((resolve, reject) => {
-      const fileStream = createWriteStream(modelFilePath);
-      response.body.pipe(fileStream);
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    
+    const fileStream = createWriteStream(modelFilePath);
+    fileStream.write(buffer);
+    fileStream.end();
 
-      fileStream.on("finish", () => {
-        // console.info(`Done! Model '${model}' saved in '${modelFilePath}'`);
-        resolve();
-      });
-
-      fileStream.on("error", (error) => {
-        console.error(`Failed to write ggml model ${model}`);
-        console.error(error.message);
-        reject();
-      });
-    });
-
-    await promise;
+    // console.info(`Done! Model '${model}' saved in '${modelFilePath}'`);
   } catch (error: any) {
     console.error(error.message);
     console.error(
