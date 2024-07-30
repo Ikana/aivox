@@ -6,12 +6,12 @@ async function runTranscription(): Promise<string> {
     return new Promise((resolve, reject) => {
         const workerScript = path.resolve(__dirname, 'worker.js');
         const child = spawn('node', [workerScript], {
-            stdio: ['ignore', 'pipe', 'pipe']
+            stdio: ['inherit', 'pipe', 'pipe']
         });
 
         let result = '';
         child.stdout.on('data', (data) => {
-            result += data.toString();
+          result += data.toString();
         });
 
         child.stderr.on('data', (data) => {
